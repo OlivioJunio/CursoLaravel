@@ -4,31 +4,32 @@
 
 @endpush
 @section('conteudo')
-    <form action=''>
-            <div>
-                <label>
-                    Formulario
-                    <br>    
-                    <br>
-                    Nome:
-                </label>
-                    <input type="text">
-                <br>
-                <label>
-                    CPF:
-                </label>
-                    <input id='cpf' type='text' class='cpf-mask'>
-                <br>
-                <label>
-                    Endereco:
-                </label>
-                    <input type="text">
-            </div>
-            <div> 
-            <button>Send</button>
-            <button>Clear</button>  
-            </div>
-    </form>    
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acoes</th>
+    </tr>
+  </thead>
+  <tbody>
+        @foreach($clients as $client)
+            <tr>
+                <th scope="row">{{$client->id}}</th>
+                <td>{{$client->name}}</td>
+                <td>{{$client->CPF}}</td>
+                <td>{{$client->Email}}</td>
+                <td>
+                <a type="button" class="btn btn-primary">Edit</a>
+                <a type="button" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        @endforeach
+  </tbody>
+</table>
 @endsection
 @push('scripts')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
