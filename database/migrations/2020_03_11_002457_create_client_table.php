@@ -16,7 +16,7 @@ class CreateClientTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->unsignedBigInteger('id',true);
             $table->string('name');
-            $table->integer('CPF');
+            $table->BigInteger('CPF');
             $table->string('Email');
             $table->boolean('active_flag')->default(true);
             $table->string('endereco')->nullable(); 

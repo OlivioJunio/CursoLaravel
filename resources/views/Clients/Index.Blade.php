@@ -3,10 +3,18 @@
 @push('css')
 
 @endpush
+
+@if(Session::has('Success'))
+        toastr["success"]("<b>SUCESSO: </b><br> 
+        {{ Session::get('success') }}");
+@endif
 @section('conteudo')
 
 <table class="table table-sm">
   <thead>
+  <a type="button" class="btn btn-success" href="{{route('clients.create')}}">Add +</a>
+    <br>
+    <br>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nome</th>
@@ -17,14 +25,15 @@
   </thead>
   <tbody>
         @foreach($clients as $client)
+        
             <tr>
                 <th scope="row">{{$client->id}}</th>
                 <td>{{$client->name}}</td>
                 <td>{{$client->CPF}}</td>
                 <td>{{$client->Email}}</td>
                 <td>
-                <a type="button" class="btn btn-primary">Edit</a>
-                <a type="button" class="btn btn-danger">Delete</a>
+                <a type="Submit" class="btn btn-primary">Edit</a>
+                <a type="Submit" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         @endforeach

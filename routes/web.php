@@ -18,4 +18,4 @@ Route::get('/', function () {
 Route::get('/teste','TesteController@index');
 
 
-Route::resource('/client','Clients\ClientController');
+Route::resource('/client','Clients\ClientController')->names('clients');

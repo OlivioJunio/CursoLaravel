@@ -4,7 +4,18 @@
 
 @endpush
 @section('conteudo')
-    <form action=''>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<form method="POST" action="{{route('clients.store')}}"
+                  class="form-horizontal form-validate">
+                {{csrf_field() }}  
             <div>
                 <label>
                     Formulario
@@ -12,21 +23,26 @@
                     <br>
                     Nome:
                 </label>
-                    <input type="text">
+                    <input id='nome' name='nome' type='text' value='{{old("nome")}}' >
                 <br>
                 <label>
                     CPF:
                 </label>
-                    <input id='cpf' type='text' class='cpf-mask'>
+                    <input id='cpf' name='cpf' type='text' value='{{old("CPF")}}' class='cpf-mask'>
+                    <br>
+                <label>
+                    Email:
+                </label>
+                    <input id='email' name='email' type='text' value='{{old("Email")}}'>
                 <br>
                 <label>
                     Endereco:
                 </label>
-                    <input type="text">
+                    <input id='End' name='End' type='text'value='{{old("Endereco")}}' >
             </div>
             <div> 
-            <button>Send</button>
-            <button>Clear</button>  
+                <Button type="Submit" class="btn btn-primary">Send</Button>
+                <Button type="Submit" class="btn btn-primary">Clear</button>  
             </div>
     </form>    
 @endsection
