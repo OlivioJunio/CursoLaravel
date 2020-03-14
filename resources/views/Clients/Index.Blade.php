@@ -20,6 +20,7 @@
       <th scope="col">Nome</th>
       <th scope="col">CPF</th>
       <th scope="col">Email</th>
+      <th scope="col">endereco</th>
       <th scope="col">Acoes</th>
     </tr>
   </thead>
@@ -27,15 +28,27 @@
         @foreach($clients as $client)
         
             <tr>
-                <th scope="row">{{$client->id}}</th>
+              <th scope="row">{{$client->id}}</th>
                 <td>{{$client->name}}</td>
                 <td>{{$client->CPF}}</td>
                 <td>{{$client->Email}}</td>
+                <td>{{$client->endereco}}</td>
                 <td>
-                <a type="Submit" class="btn btn-primary">Edit</a>
-                <a type="Submit" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
+                
+              <span data-url="{{ route('clients.destroy',[ $client->id]) }}" data-idCleint= '{{ $client->id}}'
+                class="btn btn-danger btn-sm deleteButton">
+                <i class="fal fa-trash"></i>
+                <span class='d-nome d-md-inline'> Delete</span>
+              </span>
+                
+              <a href="{{ route('clients.edit', [ $client->id]) }}" 
+                class="btn btn-primary btn-sm text-white">
+                <i class="fal fa-pencil"></i>
+                <span class='d-nome d-md-inline'>Edit</span>
+              </a>
+           
+              </td>
+          </tr>
         @endforeach
   </tbody>
 </table>
@@ -47,7 +60,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 <script>
-    $('.cpf-mask').mask('000.000.000-00');
+        $('.cpf-mask').mask('000.000.000-00');
+
+        $('.deleteButton').on('click', function (e) {
+        var url = $(this).data('url');
+        var idClient = $(this).data('idClient');
+        $.ajaxSetup({
+            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+            method: 'DELETE',
+            url: url
+        });
+        $.ajax({
+            data: {
+                'idClient': idClient,
+            },
+            success: function (data) {
+                console.log(data);
+                if (data['status'] ?? '' == 'success') {
+                    if (data['reload'] ?? '') {
+                        location.reload();
+                    }
+                } else {
+                   console.log('error');
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+      });
 </script>
 @endpush
 

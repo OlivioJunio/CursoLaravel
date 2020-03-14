@@ -13,9 +13,10 @@
         </ul>
     </div>
 @endif
-<form method="POST" action="{{route('clients.store')}}"
+<form method="POST" action="{{route('clients.update', [$client->id]) }}"
                   class="form-horizontal form-validate">
-                {{csrf_field() }}  
+                {{csrf_field() }}
+                @method('PUT')
             <div class="form-group">
                 <label>
                     Formulario
@@ -23,27 +24,27 @@
                     <br>
                     Nome:
                 </label>
-                    <input id='nome' name='nome' type='text' value='{{old("nome")}}' >
+                    <input id='name' name='name' type='text' value='{{old("Nome", $client->name)}}'>
             </div>
             <div class="form-group">
                 <label>
                     CPF:
                 </label>
-                    <input id='cpf' name='cpf' type='text' value='{{old("CPF")}}' class='cpf-mask'>
+                    <input id='cpf' name='cpf' type='text' value='{{old("CPF", $client->CPF)}}' class='cpf-mask'>
                     <br>
             </div>
             <div class="form-group">
                 <label>
                     Email:
                 </label>
-                    <input id='email' name='email' type='text' value='{{old("email")}}'>
+                    <input id='email' name='email' type='text' value='{{old("Email", $client->Email)}}'>
                 <br>
             </div>
             <div class="form-group">        
                 <label>
                     Endereco:
                 </label>
-                    <input id='endereco' name='endereco' type='text'value='{{old("endereco")}}' >
+                    <input id='endereco' name='endereco' type='text'value='{{old("endereco", $client->endereco)}}' >
             </div>
             <div> 
                 <Button type="Submit" class="btn btn-primary">Send</Button>

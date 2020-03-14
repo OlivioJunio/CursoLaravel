@@ -19,3 +19,5 @@ Route::get('/teste','TesteController@index');
 
 
 Route::resource('/client','Clients\ClientController')->names('clients');
+
+Route::resource('/book','Books\BookController')->names('Books');

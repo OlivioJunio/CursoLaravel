@@ -27,23 +27,16 @@
             </div>
             <div class="form-group">
                 <label>
-                    CPF:
+                    Writer:
                 </label>
-                    <input id='cpf' name='cpf' type='text' value='{{old("CPF")}}' class='cpf-mask'>
+                    <input id='writer' name='writer' type='text' value='{{old("writer")}}' class='cpf-mask'>
                     <br>
             </div>
             <div class="form-group">
                 <label>
-                    Email:
+                    Page Number:
                 </label>
-                    <input id='email' name='email' type='text' value='{{old("email")}}'>
-                <br>
-            </div>
-            <div class="form-group">        
-                <label>
-                    Endereco:
-                </label>
-                    <input id='endereco' name='endereco' type='text'value='{{old("endereco")}}' >
+                    <input id='page number' name='page number' type='text'value='{{old("page number")}}' >
             </div>
             <div> 
                 <Button type="Submit" class="btn btn-primary">Send</Button>
